@@ -1,0 +1,179 @@
+# Translation of Plugins - Woocommerce Contact for Shipping Quote - by Wired IT
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-07-12 01:35-0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.0\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Woocommerce Contact for Shipping Quote - by Wired IT\n"
+"POT-Creation-Date: \n"
+"Last-Translator: Christian Herrera Salas <christian.herrera@wiredit.mx>\n"
+"Language-Team: christian.herrera@wiredit.mx\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: emails/admin-shipping-quote-requested.php:26
+msgid "A new shipping quote has been requested by a customer. Details can be found below."
+msgstr "Un cliente ha solicitado una nueva cotización de envío. Los detalles se pueden encontrar a continuación."
+
+#: emails/customer-shipping-quote-available.php:27
+msgid "We have processed your shipping quote request. You can find the quoted amount and further details below."
+msgstr "Hemos procesado su solicitud de cotización de envío. Puede encontrar la cantidad citada y más detalles a continuación."
+
+#: emails/customer-shipping-quote-available.php:43
+msgid "Thanks for shopping with us."
+msgstr "Gracias por comprar con nosotros."
+
+#: emails/email-quote-admin-details.php:27
+msgid "View new shipping quote requests"
+msgstr "Ver nuevas solicitudes de cotización de envío"
+
+#: emails/email-quote-details.php:31
+msgid "Your shipping quote: %1$s"
+msgstr "Tu cotización de envío: %1$s"
+
+#: emails/email-quote-details.php:35,39
+msgid "Complete your order"
+msgstr "Completa tu pedido"
+
+#: emails/email-quote-product-details.php:25
+msgid "Quote items"
+msgstr "Productos cotizados"
+
+#: includes/ajax-functions.php:45
+msgid "Not all required data is available to request a shipping quote. Please enter your information at the checkout and try again."
+msgstr "No todos los datos requeridos están disponibles para solicitar una cotización de envío. Introduce tu información en el proceso de pago e inténtalo de nuevo."
+
+#: includes/ajax-functions.php:49
+msgid "%s is a required field to request a shipping quote"
+msgstr "%s es un campo obligatorio para solicitar una cotización de envío"
+
+#: includes/checkout-functions.php:238
+msgid "Your shipping quote is not yet available."
+msgstr "Tu cotización de envío aún no está disponible."
+
+#: includes/core-functions.php:191
+msgid "Your current cart is different from the items in the shipping quote."
+msgstr "Tu carrito actual es diferente de los productos en la cotización de envío."
+
+#: includes/core-functions.php:192
+msgid "Recover items from shipping quote."
+msgstr "Recuperar productos de la cotización de envío."
+
+#: includes/quote-functions.php:73
+msgid "New"
+msgstr "Nuevo"
+
+#: includes/quote-functions.php:74
+msgid "Pending"
+msgstr "Pendiente"
+
+#: includes/quote-functions.php:75
+msgid "Completed"
+msgstr "Completado"
+
+#: includes/quote-functions.php:76
+msgid "Closed"
+msgstr "Cerrado"
+
+#: includes/quote-functions.php:77
+msgid "Revoked"
+msgstr "Revocado"
+
+#: includes/quote-functions.php:78
+msgid "Expired"
+msgstr "Expirado"
+
+#: includes/admin/settings.php:55
+msgid "Shipping quote requests"
+msgstr "Solicitudes de cotización de envío"
+
+#: includes/admin/settings.php:83
+msgid "All"
+msgstr "Todo"
+
+#: includes/admin/settings.php:103
+msgid "Customer name"
+msgstr "Nombre del cliente"
+
+#: includes/admin/settings.php:104
+msgid "Status"
+msgstr "Estado"
+
+#: includes/admin/settings.php:105
+msgid "Cart"
+msgstr "Carrito"
+
+#: includes/admin/settings.php:106
+msgid "Quotation"
+msgstr "Cotización"
+
+#: includes/admin/settings.php:107
+msgid "Actions"
+msgstr "Acciones"
+
+#: includes/admin/settings.php:120
+msgid "There are no shipping quote requests yet"
+msgstr "Todavía no hay solicitudes de cotización de envío"
+
+#: includes/admin/settings.php:218
+msgid "Contact for Shipping Quote"
+msgstr "Contact for Shipping Quote"
+
+#: includes/admin/settings.php:224
+msgid "Quote expiration time (days)"
+msgstr "Tiempo de vencimiento de la cotización (días)"
+
+#: includes/admin/settings.php:225
+msgid "Time until a quote expires automatically. Use 0 for no expiration."
+msgstr "Tiempo hasta que una cotización caduque automáticamente. Utilice 0 para que no haya expirado."
+
+#: includes/admin/settings.php:237
+msgid "Required data"
+msgstr "Datos Obligatorios"
+
+#: includes/admin/settings.php:238
+msgid "A notice will be displayed when required data is not available."
+msgstr "Se mostrará un aviso cuando los datos requeridos no estén disponibles."
+
+#: includes/admin/settings.php:262
+msgid "Debug mode"
+msgstr "Modo debug"
+
+#: includes/admin/settings.php:263
+msgid "Enable debug mode for shipping quotes"
+msgstr "Habilitar el modo de depuración para las cotizaciones de envío"
+
+#: includes/admin/settings.php:308
+msgid "Quote options"
+msgstr "Opciones de cotización"
+
+#: includes/admin/views/html-shipping-quote-row.php:42
+msgid "Order #%s"
+msgstr "Pedido #%s"
+
+#: includes/admin/views/html-shipping-quote-row.php:53
+msgid "%s ago', 'XX time ago"
+msgstr "%s', 'XX hace tiempo"
+
+#: includes/admin/views/html-shipping-quote-row.php:98
+msgid "Save"
+msgstr "Guardar"
+
+#: includes/admin/views/html-shipping-quote-row.php:99
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: includes/admin/views/html-shipping-quote-row.php:100
+msgid "Edit"
+msgstr "Editar"
+
+#: includes/admin/views/html-shipping-quote-row.php:112
+msgid "Update to %s"
+msgstr "Actualizar %s"
+
+#: includes/admin/views/html-shipping-quote-row.php:116
+msgid "Delete"
+msgstr "Borrar"

@@ -1,0 +1,72 @@
+.wccsq-quote-description .show-if-requested {
+	display: none;
+}
+.wccsq-quote-description.wccsq-quote-requested .show-if-requested {
+	display: initial;
+}
+.wccsq-quote-description.wccsq-quote-requested .hide-if-requested {
+	display: none;
+}
+
+.wccsq-quote-description .show-if-available {
+	display: none;
+}
+.wccsq-quote-description.wccsq-quote-available .show-if-available {
+	display: initial;
+}
+.wccsq-quote-description.wccsq-quote-available .hide-if-available {
+	display: none;
+}
+
+
+/**************************************************************
+ * Modal/Popup
+ *************************************************************/
+.wccsq-popup-bg {
+	background: rgba(0, 0, 0, 0.2);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+}
+.wccsq-popup {
+	z-index: 1010;
+	margin: 0 auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: fixed;
+	border-radius: 4px;
+	background: #fff;
+	box-shadow: 0 0 12px 5px rgba(0, 0, 0, 0.05);
+	padding: 20px;
+	width: auto;
+	max-width: 700px;
+
+	@media (max-width: 768px) {
+		max-width: calc(100vw - 40px);
+		transform: none;
+		left: 20px;
+		top: 50px;
+		max-height: 80vh;
+		overflow: scroll;
+	}
+
+	.wccsq-close:before {
+		content: "\d7";
+		color: #bbb;
+		cursor: pointer;
+		font-size: 2em;
+		position: absolute;
+		right: 15px;
+		top: 15px;
+		height: 15px;
+		line-height: 15px;
+	}
+	.wccsq-body {
+
+	}
+}
+

@@ -1,0 +1,95 @@
+<?php
+
+/* Compatibility for Multiple Currency Switcher */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit ; // Exit if accessed directly.
+}
+/*
+ * Get Current current code
+ *
+ */
+if ( ! function_exists( 'fp_rac_get_current_currency_code' ) ) {
+
+	function fp_rac_get_current_currency_code() {
+		global $woocommerce_wpml , $WOOCS ;
+		$currency_code = get_option( 'woocommerce_currency' ) ;
+
+		if ( class_exists( 'WC_Aelia_CurrencySwitcher' ) ) {// Compatible for Alia Currency Switcher.
+			$currency_code = isset( $_COOKIE[ 'aelia_cs_selected_currency' ] ) ? wc_clean( wp_unslash( $_COOKIE[ 'aelia_cs_selected_currency' ] ) ) : $currency_code ;
+		} elseif ( class_exists( 'WOOCS' ) && is_object( $WOOCS ) ) {// Compatible for Woocommerce Currency Switcher.
+			$currency_code = $WOOCS->current_currency ;
+		} elseif ( class_exists( 'WCML_Multi_Currency' ) && ( is_object( $woocommerce_wpml->multi_currency ) && WCML_MULTI_CURRENCIES_INDEPENDENT == $woocommerce_wpml->settings[ 'enable_multi_currency' ] ) ) {// Compatible for WPML MultiCurrency Switcher
+			$currency_code = $woocommerce_wpml->multi_currency->get_client_currency() ;
+		} elseif ( class_exists( 'WOOMULTI_CURRENCY_F_Frontend_Symbol' ) ) { // Compatible for WooCommerce Multi Currency by Villa themes
+			$obj           = new WOOMULTI_CURRENCY_F_Frontend_Symbol() ;
+			$currency_code = $obj->woocommerce_currency( $currency_code ) ;
+		} elseif ( class_exists( 'WOOMULTI_CURRENCY_Frontend_Symbol' ) ) { // Compatible for WooCommerce Multi Currency Premium by Villa themes
+			$obj           = new WOOMULTI_CURRENCY_Frontend_Symbol() ;
+			$currency_code = $obj->woocommerce_currency( $currency_code ) ;
+		} elseif ( class_exists( 'WCPBC_Frontend_Pricing' ) && ( wcpbc_the_zone() ) ) { // Compatible for WooCommerce Price Based on Country
+			$currency_code = WCPBC_Frontend_Pricing::get_currency( '' ) ;
+		} elseif ( function_exists( 'alg_get_current_currency_code' ) ) { // Compatible to Currency Switcher for WooCommerce by WP Wham
+			$currency_code = alg_get_current_currency_code() ;
+		}
+
+		return $currency_code ;
+	}
+
+}
+/*
+ * Format Price based on Currrency code.
+ *
+ */
+if ( ! function_exists( 'fp_rac_format_price' ) ) {
+
+	function fp_rac_format_price( $price, $currency_code = '', $product = null, $each_cart = array() ) {
+		$formatted_price = '' ;
+		if ( '' != $currency_code ) {
+			if ( class_exists( 'WCML_Multi_Currency' ) ) {// Compatible for WPML MultiCurrency Switcher
+				global $woocommerce_wpml ;
+				if ( is_object( $woocommerce_wpml->multi_currency ) && WCML_MULTI_CURRENCIES_INDEPENDENT == $woocommerce_wpml->settings[ 'enable_multi_currency' ] ) {
+					if ( isset( $woocommerce_wpml->multi_currency->prices ) ) {
+						WC()->initialize_session() ;
+						$formatted_price = $woocommerce_wpml->multi_currency->prices->format_price_in_currency( $price , $currency_code ) ;
+					}
+				}
+			}
+			if ( class_exists( 'WC_Aelia_CurrencySwitcher' ) ) {// Compatible for Alia Currency Switcher.
+				$switcherobj = $GLOBALS[ WC_Aelia_CurrencySwitcher::$plugin_slug ] ;
+				if ( is_object( $switcherobj ) && ! $formatted_price ) {
+					$formatted_price = $switcherobj->format_price( $price , $currency_code ) ;
+				}
+			}
+			if ( class_exists( 'WOOCS' ) ) {
+				global $WOOCS ;
+				$user_id = '' ;
+
+				if ( $each_cart && is_object( $each_cart ) ) {
+					$user_id = $each_cart->user_id ;
+				}
+
+				if ( is_object( $WOOCS ) && ! $formatted_price ) {
+					$current_currency_code   = $WOOCS->current_currency ;
+					$WOOCS->current_currency = $currency_code ;
+					$convert                 = false ;
+
+					if ( ! is_object( $each_cart ) ) {
+						$cart_array = maybe_unserialize( $each_cart->cart_details ) ;
+						$convert    = isset( $cart_array[ 'woocs_is_multipled' ] ) ? $cart_array[ 'woocs_is_multipled' ] : true ;
+					}
+
+					$formatted_price         = $WOOCS->wc_price( $price , $convert , array( 'currency' => $currency_code ) , $product ) ;
+					$WOOCS->current_currency = $current_currency_code ;
+				}
+			}
+			if ( ! $formatted_price ) {
+				$formatted_price = fp_rac_wc_format_price( $price , array( 'currency' => $currency_code ) ) ;
+			}
+		} else {
+			$formatted_price = fp_rac_wc_format_price( $price ) ;
+		}
+
+		return $formatted_price ;
+	}
+
+}
